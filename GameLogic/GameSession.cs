@@ -27,7 +27,7 @@ namespace GameLogic
                 Console.Write("Choose the size of the game board (Must be even) ");
             } while (!int.TryParse(Console.ReadLine(), out _size) && _size % 2 != 0);
 
-            _cards = Deck.GetCards(_size);
+            _cards = Deck.GetShuffledCards(_size);
                 
 
             PrintBoard();

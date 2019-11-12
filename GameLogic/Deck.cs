@@ -9,23 +9,29 @@ namespace GameLogic
     {
         private static Card[,] _deck;
 
-        public static Card[,] GetCards(int num)
+        public static Card[,] GetShuffledCards(int num)
         {
             
             _deck = new Card[num, num];
+            int pairsOfCards = (num * num) / 2;
             int counter = 1;
+            bool isUpToMiddle = true;
 
-            for (int i = 0; i < num; i++)
+            for (int x = 0; x < num; x++)
             {
-                for (int j = 0; j < num; j++)
+                for (int y = 0; y < num; y++)
                 {
-                    if (counter < num * num / 2)
+                    if (counter < pairsOfCards + 1 && isUpToMiddle)
                     {
-                        _deck[i, j] = new Card(counter++);
+                        _deck[x, y] = new Card(counter++);
+                        if (_deck[x, y].Value.Equals(pairsOfCards) )
+                        {
+                            isUpToMiddle = false;
+                        }
                     }
                     else
                     {
-                        _deck[i, j] = new Card(counter--);
+                        _deck[x, y] = new Card(--counter);
                     }
                     
                 }
