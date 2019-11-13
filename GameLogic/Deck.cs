@@ -11,7 +11,6 @@ namespace GameLogic
 
         public static Card[,] GetShuffledCards(int num)
         {
-            
             _deck = new Card[num, num];
             int pairsOfCards = (num * num) / 2;
             int counter = 1;
@@ -21,19 +20,14 @@ namespace GameLogic
             {
                 for (int y = 0; y < num; y++)
                 {
-                    if (counter < pairsOfCards + 1 && isUpToMiddle)
+                    if (counter <= pairsOfCards && isUpToMiddle)
                     {
                         _deck[x, y] = new Card(counter++);
                         if (_deck[x, y].Value.Equals(pairsOfCards) )
-                        {
                             isUpToMiddle = false;
-                        }
                     }
                     else
-                    {
                         _deck[x, y] = new Card(--counter);
-                    }
-                    
                 }
             }
 
