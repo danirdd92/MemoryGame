@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
 using System.Threading;
 
 namespace GameLogic
 {
     public class GameSession
     {
-        private Player[] _players;
+        private readonly Player[] _players;
         private int _size;
         private Card[,] _cards;
 
@@ -78,22 +75,8 @@ namespace GameLogic
         {
             int p = GetActivePlayer(_players);
 
-
-            Console.Write($"{_players[p].Name}, choose first card column ");
-            int column1 = int.Parse(Console.ReadLine());
-            Console.Write($"{_players[p].Name}, choose first card row ");
-            int row1 = int.Parse(Console.ReadLine());
-
-            _cards[column1 - 1, row1 - 1].IsHidden = false;
-
-            PrintGameState();
-
-            Console.Write($"{_players[p].Name}, choose second card column ");
-            int column2 = int.Parse(Console.ReadLine());
-            Console.Write($"{_players[p].Name}, choose second card row) ");
-            int row2 = int.Parse(Console.ReadLine());
-
-            _cards[column2 - 1, row2 - 1].IsHidden = false;
+            GetCoordinates(out int column1, out int row1,
+                out int column2, out int row2);
 
             PrintGameState();
 
@@ -137,6 +120,48 @@ namespace GameLogic
                 }
             }
             throw new Exception("Unexcpect error has occoured.");
+        }
+
+        private void GetCoordinates(out int column1, out int row1,
+            out int column2, out int row2)
+        {
+            int p = GetActivePlayer(_players);
+
+            Console.Write($"{_players[p].Name}, choose first card column ");
+            column1 = GetValidInput();
+            Console.Write($"{_players[p].Name}, choose first card row ");
+            row1 = GetValidInput();
+
+            _cards[column1 - 1, row1 - 1].IsHidden = false;
+
+            PrintGameState();
+
+            Console.Write($"{_players[p].Name}, choose second card column ");
+            column2 = GetValidInput();
+            Console.Write($"{_players[p].Name}, choose second card row) ");
+            row2 = GetValidInput();
+
+            _cards[column2 - 1, row2 - 1].IsHidden = false;
+        }
+
+        private int GetValidInput()
+        {
+            int num;
+            bool isBadInput = true;
+            do
+            {
+                int.TryParse(Console.ReadLine(), out num);
+                if (num > 0 && num <= _size)
+                {
+                    isBadInput = false;
+                }
+                else
+                {
+                    Console.Write($"Bad Input, pick a number between 1 to {_size}: ");
+                }
+            } while (isBadInput);
+
+            return num;
         }
     }
 }
