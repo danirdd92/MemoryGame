@@ -127,6 +127,8 @@ namespace GameLogic
                 PrintGameState();
                 MakeTurn();
             }
+            int i = GetActivePlayer(_players);
+            Console.WriteLine($"CONGRATULATIONS!!! {_players[i]} Wins!!!!");
         }
 
         private static int GetActivePlayer(Player[] players)
