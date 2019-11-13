@@ -104,7 +104,7 @@ namespace GameLogic
 
             Thread.Sleep(2000);
 
-            if (_cards[column1, row1].Value == _cards[column2, row2].Value)
+            if (_cards[column1, row1].Value == _cards[column2, row2].Value && _cards[column1, row1].IsTaken == false)
             {
                 _cards[column1, row1].IsTaken = true;
                 _cards[column2, row2].IsTaken = true;
