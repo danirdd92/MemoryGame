@@ -84,36 +84,36 @@ namespace GameLogic
             int p = GetActivePlayer(_players);
             
 
-            Console.Write($"{_players[p].Name}, choose first card column (zero based) ");
+            Console.Write($"{_players[p].Name}, choose first card column ");
             int column1 = int.Parse(Console.ReadLine());
-            Console.Write($"{_players[p].Name}, choose first card row (zero based) ");
+            Console.Write($"{_players[p].Name}, choose first card row ");
             int row1 = int.Parse(Console.ReadLine());
 
-            _cards[column1, row1].IsHidden = false;
+            _cards[column1 - 1, row1 - 1].IsHidden = false;
 
             PrintGameState();
 
-            Console.Write($"{_players[p].Name}, choose second card column (zero based) ");
+            Console.Write($"{_players[p].Name}, choose second card column ");
             int column2 = int.Parse(Console.ReadLine());
-            Console.Write($"{_players[p].Name}, choose second card row (zero based) ");
+            Console.Write($"{_players[p].Name}, choose second card row) ");
             int row2 = int.Parse(Console.ReadLine());
 
-            _cards[column2, row2].IsHidden = false;
+            _cards[column2 - 1, row2 - 1].IsHidden = false;
 
             PrintGameState();
 
             Thread.Sleep(2000);
 
-            if (_cards[column1, row1].Value == _cards[column2, row2].Value && _cards[column1, row1].IsTaken == false)
+            if (_cards[column1 - 1, row1 - 1].Value == _cards[column2 - 1, row2 - 1].Value && _cards[column1 - 1, row1 - 1].IsTaken == false)
             {
-                _cards[column1, row1].IsTaken = true;
-                _cards[column2, row2].IsTaken = true;
+                _cards[column1 - 1, row1 - 1].IsTaken = true;
+                _cards[column2 - 1, row2 - 1].IsTaken = true;
                 _players[p].Score++;
             }
             else
             {
-                _cards[column1, row1].IsHidden = true;
-                _cards[column2, row2].IsHidden = true;
+                _cards[column1 - 1, row1 - 1].IsHidden = true;
+                _cards[column2 - 1, row2 - 1].IsHidden = true;
                 SwapPlayers();
             }
         }
