@@ -6,7 +6,7 @@ namespace GameLogic
 {
     internal class Player
     {
-        private int _score;
+        private int _score = 0;
         private bool _isAcive = false;
 
         public Player(string name)
