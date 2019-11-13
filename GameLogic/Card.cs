@@ -23,7 +23,14 @@ namespace GameLogic
         public bool IsHidden
         {
             get { return _isHidden; }
-            set { _isHidden = value; }
+            set
+            {
+                if (!_isTaken)
+                {
+                    _isHidden = value;
+                }
+                 
+            }
         }
 
         public bool IsTaken

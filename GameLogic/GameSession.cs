@@ -104,7 +104,8 @@ namespace GameLogic
 
             Thread.Sleep(2000);
 
-            if (_cards[column1 - 1, row1 - 1].Value == _cards[column2 - 1, row2 - 1].Value && _cards[column1 - 1, row1 - 1].IsTaken == false)
+            if (_cards[column1 - 1, row1 - 1].Value == _cards[column2 - 1, row2 - 1].Value 
+                && _cards[column1 - 1, row1 - 1].IsTaken == false)
             {
                 _cards[column1 - 1, row1 - 1].IsTaken = true;
                 _cards[column2 - 1, row2 - 1].IsTaken = true;
@@ -122,13 +123,13 @@ namespace GameLogic
         {
 
             while (_players[0].Score != (_size * _size) / 2
-                || _players[1].Score != (_size * _size) / 2)
+                && _players[1].Score != (_size * _size) / 2)
             {
                 PrintGameState();
                 MakeTurn();
             }
             int i = GetActivePlayer(_players);
-            Console.WriteLine($"CONGRATULATIONS!!! {_players[i]} Wins!!!!");
+            Console.WriteLine($"CONGRATULATIONS!!! {_players[i].Name} Wins!!!!");
         }
 
         private static int GetActivePlayer(Player[] players)
