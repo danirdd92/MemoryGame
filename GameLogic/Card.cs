@@ -29,7 +29,18 @@ namespace GameLogic
         public bool IsTaken
         {
             get { return _isTaken; }
-            set { _isTaken = value; }
+            set 
+            {
+                if (_isTaken)
+                {
+                    IsTaken = true;
+                }
+                else
+                {
+                    _isTaken = value;
+                }
+              
+            }
         }
 
         public string PrintCard()
