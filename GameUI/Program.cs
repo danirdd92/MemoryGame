@@ -10,6 +10,7 @@ namespace GameUI
         public static void Main(string[] args)
         {
             GameSession gs = new GameSession();
+            gs.StartGame();
             Console.WriteLine("Press any key to quit... ");
             Console.ReadKey();
         }

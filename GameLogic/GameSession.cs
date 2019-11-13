@@ -8,29 +8,21 @@ namespace GameLogic
 {
     public class GameSession
     {
-        // Bug - For some reason Players are not getting 
-        // instantiated properly inside a CTOR so I create them 
-        // on the spot inside the field - I know, it's ugly; but it works.
+        private Player[] _players;
+        private int _size;
+        private Card[,] _cards;
 
-        private Player[] _players = new Player[]
+        public GameSession()
+        {
+            _players = new Player[]
         {
             new Player("Player1"),
             new Player("Player2")
         };
-
-        //private IEnumerable<Player> players = new IEnumerable<Player>
-
-        private int _size;
-        private Card[,] _cards;       
-
-        public GameSession()
-        {
             _players[0].IsActive = true;
-
-            StartGame();
         }
 
-        private void StartGame()
+        public void StartGame()
         {
             do
             {
@@ -58,7 +50,10 @@ namespace GameLogic
                 }
                 Console.WriteLine();
             }
+
+            Console.WriteLine();
         }
+
         private void SwapPlayers()
         {
             if (_players[0].IsActive)
@@ -82,7 +77,7 @@ namespace GameLogic
         private void MakeTurn()
         {
             int p = GetActivePlayer(_players);
-            
+
 
             Console.Write($"{_players[p].Name}, choose first card column ");
             int column1 = int.Parse(Console.ReadLine());
@@ -104,7 +99,7 @@ namespace GameLogic
 
             Thread.Sleep(2000);
 
-            if (_cards[column1 - 1, row1 - 1].Value == _cards[column2 - 1, row2 - 1].Value 
+            if (_cards[column1 - 1, row1 - 1].Value == _cards[column2 - 1, row2 - 1].Value
                 && _cards[column1 - 1, row1 - 1].IsTaken == false)
             {
                 _cards[column1 - 1, row1 - 1].IsTaken = true;

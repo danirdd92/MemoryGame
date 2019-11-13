@@ -6,19 +6,14 @@ namespace GameLogic
 {
     public class Card
     {
-        private int _value;
         private bool _isHidden = true;
         private bool _isTaken = false;
 
         public Card(int value)
         {
-            _value = value;
+            Value = value;
         }
-        public int Value
-        {
-            get { return _value; }
-            set { _value = value; }
-        }
+        public int Value { get; set; }
 
         public bool IsHidden
         {
@@ -52,8 +47,6 @@ namespace GameLogic
 
         public string PrintCard()
         {
-
-            // NOTE: make sure to reset properties to make sure it would show value
             if (this.IsHidden)
                 return "X";
 
